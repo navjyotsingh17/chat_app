@@ -1,5 +1,7 @@
 import { StreamChat } from "stream-chat";
 import { clerkClient } from "@clerk/nextjs/server";
+import fs from 'fs';
+import path from 'path';
 
 const api_key = "6cp8s777zute";
 const api_secret =
@@ -17,8 +19,9 @@ export async function POST(request) {
     });
 
     // console.log(capitalizedWords.join(" ") + " Discussion");
-    // Join the capitalized words and add "Discussion"
-    return capitalizedWords.join(" ") + " Discussion";
+    
+    // Join the capitalized words
+    return capitalizedWords.join(" ");
   };
 
   // Initialize a Server Client
@@ -38,10 +41,14 @@ export async function POST(request) {
     },
   });
 
-  const slugs = ['python-new','react-new','javascript-new','nextjs-new','cpp-new','ruby-new','java-new']
+  // const slugs = ['python-new','react-new','javascript-new','nextjs-new','cpp-new','ruby-new','java-new']
+
+  const bubblesConfigPath = path.resolve(process.cwd(), 'bubblesconfig.json');
+  const bubblesConfig = JSON.parse(fs.readFileSync(bubblesConfigPath, 'utf-8'));
+  const slugs = bubblesConfig.slug;
   slugs.forEach(async(item)=>{
     const channel = serverClient.channel("messaging", item, {
-      image: "https://getstream.io/random_png/?name=react",
+      image: item.img,
       name: channelName(item),
       created_by_id: user.data.id,
     });

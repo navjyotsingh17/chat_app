@@ -108,7 +108,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-8 border-t border-slate-800 pt-8 text-center">
           <p className="text-slate-400">
-            © {currentYear} Bubble. All rights reserved.
+            © {currentYear} Bubble. All rights reserved. Created with ❤️ by {'Navjyot Singh Pulaha'}
           </p>
         </div>
       </div>

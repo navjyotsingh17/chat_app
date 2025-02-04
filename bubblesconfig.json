@@ -1,0 +1,57 @@
+{
+  "bubbles": [
+    {
+      "title": "Python",
+      "description": "Python is a programming language that lets you work quickly and integrate systems more effectively.",
+      "img": "/python.png",
+      "slug": "python-new"
+    },
+    {
+      "title": "Javascript",
+      "description": "JavaScript is a versatile language commonly used for web development.",
+      "img": "/javascript.png",
+      "slug": "javascript-new"
+    },
+    {
+      "title": "Java",
+      "description": "Java is a high-level, class-based, object-oriented programming language.",
+      "img": "/java.png",
+      "slug": "java-new"
+    },
+    {
+      "title": "C++",
+      "description": "C++ is a general-purpose programming language created as an extension of the C programming language.",
+      "img": "/cpp.png",
+      "slug": "cpp-new"
+    },
+    {
+      "title": "Ruby",
+      "description": "Ruby is a dynamic, open source programming language with a focus on simplicity and productivity.",
+      "img": "/ruby.png",
+      "slug": "ruby-new"
+    },
+    {
+      "title": "React",
+      "description": "React is a JavaScript library for building user interfaces.",
+      "img": "/react.png",
+      "slug": "react-new"
+    },
+    {
+      "title": "NextJS",
+      "description": "Next.js is a React framework that enables functionality such as server-side rendering and generating static websites for React based web applications.",
+      "img": "/nextjs.png",
+      "slug": "nextjs-new"
+    },
+    {
+      "title": "DeepSeek",
+      "description": "DeepSeek learn karne ke liye bubble",
+      "img": "/deepseek.png",
+      "slug": "deepseek",
+      "users": [
+        "user_2ryctcJCUrNdtCy3oHrtugjgZaC",
+        "user_2rydFNtQqz3b8Tx12ToxZrvtH26",
+        ""
+      ]
+    }
+  ]
+}

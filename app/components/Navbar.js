@@ -26,7 +26,7 @@ const Navbar = () => {
                 </span>
               </Link>
             </div>
-            <div className="hidden md:flex items-center space-x-1">
+            {/* <div className="hidden md:flex items-center space-x-1">
               <Link
                 href="/forums"
                 className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
@@ -39,21 +39,38 @@ const Navbar = () => {
               >
                 Chat
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="hidden md:flex items-center space-x-3">
             {currentUser.isSignedIn ? (
-              <UserButton />
+              <>
+                <div className="hidden md:flex items-center space-x-1">
+                  {/* <Link
+                    href="/forums"
+                    className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
+                  >
+                    Forums
+                  </Link> */}
+                  <Link
+                    href="/forums"
+                    className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
+                  >
+                    Chat
+                  </Link>
+                </div>
+
+                <UserButton />
+              </>
             ) : (
               <>
                 {/* <Link
-                  href="/login"
+                  href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
                   className="py-2 px-2 font-medium text-gray-500 rounded-xl hover:bg-indigo-600 hover:text-white transition duration-300"
                 >
                   Log In
                 </Link>
                 <Link
-                  href="/signup"
+                  href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
                   className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-500 transition duration-300"
                 >
                   Sign Up
@@ -90,21 +107,34 @@ const Navbar = () => {
               href="/forums"
               className="block text-sm px-2 py-4 hover:bg-indigo-500 transition duration-300"
             >
-              Forums
+              Chat
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link
               href="/chat"
               className="block text-sm px-2 py-4 hover:bg-indigo-500 transition duration-300"
             >
               Chat
             </Link>
-          </li>
+          </li> */}
           {currentUser.isSignedIn ? (
             <UserButton />
           ) : (
-            <></>
+            <>
+              <Link
+                href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
+                className="py-2 px-2 font-medium text-gray-500 rounded-xl hover:bg-indigo-600 hover:text-white transition duration-300"
+              >
+                Log In
+              </Link>
+              <Link
+                href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
+                className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-500 transition duration-300"
+              >
+                Sign Up
+              </Link>
+            </>
           )}
         </ul>
       </div>

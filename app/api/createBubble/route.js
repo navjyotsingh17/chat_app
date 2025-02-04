@@ -1,46 +1,74 @@
-import { StreamChat } from "stream-chat";
-
-const api_key = "6cp8s777zute";
-const api_secret = "sy5rmkx4sdfcx4zn2zdudb6d4rsv32d7dd6dmwjuh9n9jhecqjm8ctney4k63f8g";
+import { NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 export async function POST(request) {
   try {
-    // Parse the incoming JSON request
-    const { groupName, users } = await request.json();
+    const { groupName, users, description, image } = await request.json();
+    console.log('Request data:', groupName, users, description, image);
 
-    if (!groupName || !Array.isArray(users) || users.length === 0) {
-      return Response.json({ error: "Invalid input data." }, { status: 400 });
+    // Validate input
+    if (!groupName || !users || !Array.isArray(users)) {
+      return NextResponse.json(
+        { error: 'Invalid input data. Ensure all fields are provided.' },
+        { status: 400 }
+      );
     }
 
-    // Initialize a Server Client
-    const serverClient = StreamChat.getInstance(api_key, api_secret);
+    const filePath = path.join(process.cwd(), process.env.NEXT_JSON_CONFIG_FILE);
+    let existingData;
 
-    // Capitalize the first letter of each word in groupName
-    const formattedGroupName = groupName
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ");
+    // Read or initialize JSON file
+    try {
+      const fileContent = await fs.readFile(filePath, 'utf8');
+      existingData = JSON.parse(fileContent);
+    } catch (error) {
+      existingData = { bubbles: [] };
 
-    // Create the channel with the given groupName
-    const channel = serverClient.channel("messaging", groupName.toLowerCase(), {
-      image: "https://getstream.io/random_png/?name=group",
-      name: formattedGroupName,
-      created_by_id: "admin", // Replace with the ID of the user creating the channel if required
-    });
+      // Create the file with an empty structure
+      await fs.writeFile(
+        filePath,
+        JSON.stringify(existingData, null, 2),
+        'utf8'
+      );
+    }
 
-    // Create the channel
-    await channel.create();
+    // Create new bubble entry
+    const newBubble = {
+      title: groupName,
+      description: description,
+      img: image,
+      slug: groupName.toLowerCase().replace(/\s+/g, '-'),
+      users: users
+    };
 
-    // Add users to the channel
-    await channel.addMembers(users);
+    // Check for and replace placeholder or add new entry
+    if (
+      existingData.bubbles.length === 1 &&
+      existingData.bubbles[0].title === '' &&
+      existingData.bubbles[0].description === ''
+    ) {
+      existingData.bubbles = [newBubble];
+    } else {
+      existingData.bubbles.push(newBubble);
+    }
 
-    return Response.json({
-      message: `Channel '${formattedGroupName}' created successfully!`,
-      groupName: formattedGroupName,
-      usersAdded: users,
-    });
+    // Write updated data to file
+    await fs.writeFile(
+      filePath,
+      JSON.stringify(existingData, null, 2),
+      'utf8'
+    );
+
+    return NextResponse.json(
+      { message: 'Bubble config updated successfully', data: newBubble },
+      { status: 200 }
+    );
   } catch (error) {
-    console.error("Error creating channel:", error);
-    return Response.json({ error: "Failed to create channel." }, { status: 500 });
+    console.error('Error updating bubble config:', error);
+    return NextResponse.json(
+      { error: 'Failed to update bubble config' },
+      { status: 500 }
+    );
   }
 }

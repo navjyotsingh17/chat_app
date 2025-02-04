@@ -25,7 +25,7 @@ export default function Home() {
 
         {/* CTA Buttons */}
         <div className="mt-10 flex justify-center gap-x-6">
-          <Link href={"/chat"}>
+          <Link href={"/forums"}>
             <button className="rounded-xl bg-indigo-600 px-6 py-3 text-lg font-semibold text-white shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-600">
               Get Started
               <ArrowRight className="ml-2 inline-block h-5 w-5" />
@@ -76,7 +76,7 @@ export default function Home() {
   );
 }
 
-// export const metadata = {
-//   title: "Home - Bubble",
-//   description: "A chat app, to chat with your friends and family.",
-// };
+export const metadata = {
+  title: "Home - Bubble",
+  description: "A chat app, to chat with your friends and family.",
+};
