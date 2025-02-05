@@ -29,13 +29,13 @@ const Navbar = () => {
             {/* <div className="hidden md:flex items-center space-x-1">
               <Link
                 href="/forums"
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
+                className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
               >
                 Forums
               </Link>
               <Link
                 href="/chat"
-                className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
+                className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
               >
                 Chat
               </Link>
@@ -47,13 +47,13 @@ const Navbar = () => {
                 <div className="hidden md:flex items-center space-x-1">
                   {/* <Link
                     href="/forums"
-                    className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
+                    className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
                   >
                     Forums
                   </Link> */}
                   <Link
                     href="/forums"
-                    className="py-4 px-2 text-gray-500 font-semibold hover:text-indigo-600 transition duration-300"
+                    className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
                   >
                     Chat
                   </Link>
@@ -65,13 +65,13 @@ const Navbar = () => {
               <>
                 {/* <Link
                   href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
-                  className="py-2 px-2 font-medium text-gray-500 rounded-xl hover:bg-indigo-600 hover:text-white transition duration-300"
+                  className="py-2 px-2 font-medium text-gray-500 rounded-xl md:hover:bg-indigo-600 md:hover:text-white transition duration-300"
                 >
                   Log In
                 </Link>
                 <Link
                   href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
-                  className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-500 transition duration-300"
+                  className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl md:hover:bg-indigo-500 transition duration-300"
                 >
                   Sign Up
                 </Link> */}
@@ -105,7 +105,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/forums"
-              className="block text-sm px-2 py-4 hover:bg-indigo-500 transition duration-300"
+              className="block text-sm px-2 py-4 md:hover:bg-indigo-500 transition duration-300"
             >
               Chat
             </Link>
@@ -113,7 +113,7 @@ const Navbar = () => {
           {/* <li>
             <Link
               href="/chat"
-              className="block text-sm px-2 py-4 hover:bg-indigo-500 transition duration-300"
+              className="block text-sm px-2 py-4 md:hover:bg-indigo-500 transition duration-300"
             >
               Chat
             </Link>
@@ -124,13 +124,13 @@ const Navbar = () => {
             <>
               <Link
                 href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
-                className="py-2 px-2 font-medium text-gray-500 rounded-xl hover:bg-indigo-600 hover:text-white transition duration-300"
+                className="py-2 px-2 font-medium text-gray-500 rounded-xl md:hover:bg-indigo-600 md:hover:text-white transition duration-300"
               >
                 Log In
               </Link>
               <Link
                 href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
-                className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl hover:bg-indigo-500 transition duration-300"
+                className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl md:hover:bg-indigo-500 transition duration-300"
               >
                 Sign Up
               </Link>

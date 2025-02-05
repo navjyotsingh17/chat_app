@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import BackButton from "../components/backButton";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 const createBubble = () => {
   const [groupName, setGroupName] = useState("");
@@ -21,40 +23,38 @@ const createBubble = () => {
 
     const userList = users.split(",").map((user) => user.trim());
 
-    console.log(groupName, userList);
+    // console.log(groupName, userList);
 
     try {
-      const response = await fetch(
+
+      const response = await axios.post(
         `${process.env.NEXT_PUBLIC_HOST}/api/createBubble`,
         {
-          method: "POST",
+          groupName,
+          description,
+          image,
+          users: userList,
+        },
+        {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            groupName,
-            description,
-            image,
-            users: userList,
-          }),
         }
       );
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+      if (response.data.success) {
+        toast.success("Your bubble has been created");
+        setGroupName("");
+        setUsers("");
+        setDescription("");
+        setImage("");
+      } else if(response.data.error) {
+        toast.error("This bubble already exists");
       }
-
-      const data = await response.json();
-      // Handle successful response
-      console.log("Bubble config updated:", data);
-      // Optional: Reset form or show success message
-      setGroupName("");
-      setUsers("");
-      setDescription("");
-      setImage("");
     } catch (err) {
-      setError("Failed to update bubble config. Please try again.");
-      console.error("Bubble config update error:", err);
+      // setError("Failed to update bubble config. Please try again.");
+      toast.error("Error while creating bubble");
+      console.log("error:- ",err)
     } finally {
       setLoading(false);
     }
@@ -118,7 +118,7 @@ const createBubble = () => {
             />
           </div>
 
-          {error && <div className="text-red-500 text-sm">{error}</div>}
+          {/* {error && <div className="text-red-500 text-sm">{error}</div>} */}
 
           <Button type="submit" disabled={loading} className="w-full">
             {loading ? "Creating..." : "Create Bubble"}
@@ -136,9 +136,10 @@ const createBubble = () => {
           Clear
         </Button>
       </div>
-      <div className="mx-10 top-10">
-        {/* <BackButton className="absolute bottom-0 left-52 mb-4 ml-4 w-fit" /> */}
+      <div className="md:ml-10 md:top-10 ml-5 mt-3 py-2">
+        <BackButton className="absolute bottom-0 left-52 mb-4 ml-4 w-fit" />
       </div>
+      <ToastContainer />
     </>
   );
 };

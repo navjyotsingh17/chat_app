@@ -12,23 +12,28 @@ import {
   Window,
 } from "stream-chat-react";
 import "stream-chat-react/dist/css/v2/index.css";
+import "ldrs/ring";
+import BackButton from "@/app/components/backButton";
 
 const ChatForum = ({ clerkUser, slug }) => {
-  const [channel, setChannel] = useState();
   
+  const [channel, setChannel] = useState();
+
+  // console.log("slug: ",slug)
+
   const apiKey = "6cp8s777zute";
   const userId = clerkUser.id;
   const userName = clerkUser.name;
   const userToken = clerkUser.token;
 
-   console.log(userToken)
-  
+  //  console.log(userToken)
+
   const user = {
     id: userId,
     name: userName,
     image: `https://getstream.io/random_png/?name=${userName}`,
   };
-  
+
   const client = useCreateChatClient({
     apiKey,
     tokenOrProvider: userToken,
@@ -44,9 +49,9 @@ const ChatForum = ({ clerkUser, slug }) => {
       return word.charAt(0).toUpperCase() + word.slice(1);
     });
 
-    console.log(capitalizedWords.join(" ") + " Discussion");
+    // console.log(capitalizedWords.join(" ") + " Discussion");
     // Join the capitalized words and add "Discussion"
-    return capitalizedWords.join(" ") + " Discussion";
+    return capitalizedWords.join(" ");
   };
 
   useEffect(() => {
@@ -55,15 +60,27 @@ const ChatForum = ({ clerkUser, slug }) => {
     const channel = client.channel("messaging", slug, {
       image: "https://getstream.io/random_png/?name=react",
       name: channelName(slug),
-    //   members: [userId],
+      //   members: [userId],
     });
 
     setChannel(channel);
   }, [client]);
 
-  if (!client) return <div>Setting up client & connection...</div>;
+  if (!client)
+    return (
+      <div>
+        <l-ring
+          size="40"
+          stroke="5"
+          bg-opacity="0"
+          speed="2"
+          color="black"
+        ></l-ring>
+      </div>
+    );
 
   return (
+    <>
     <Chat client={client}>
       <Channel channel={channel}>
         <Window>
@@ -74,6 +91,10 @@ const ChatForum = ({ clerkUser, slug }) => {
         <Thread />
       </Channel>
     </Chat>
+    <div className="ml-5 mt-5">
+    <BackButton>Back</BackButton>
+    </div>
+    </>
   );
 };
 
