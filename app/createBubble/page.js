@@ -86,7 +86,7 @@ const createBubble = () => {
               id="users"
               value={users}
               onChange={(e) => setUsers(e.target.value)}
-              placeholder="john@example.com, jane@example.com"
+              placeholder="user_1,user_2"
               required
               className="mt-1"
             />

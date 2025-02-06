@@ -72,7 +72,7 @@ const page = () => {
         // Handle successful response
         if (response.data.success) {
           setIsDeleted(true);
-          setLoading(false)
+          setLoading(false);
           toast.success("Bubble deleted");
           return {
             success: true,
@@ -108,9 +108,8 @@ const page = () => {
           message: null,
         };
       }
-    }
-    else{
-      toast.warning("Deletion cancelled by user")
+    } else {
+      toast.warning("Deletion cancelled by user");
     }
   }
 
@@ -168,7 +167,7 @@ const page = () => {
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center h-screen">
+          <div className="flex items-center justify-center mt-20">
             <h1 className="text-center text-2xl text-black">
               No <span className="text-indigo-600">Bubbles</span> Found
             </h1>
