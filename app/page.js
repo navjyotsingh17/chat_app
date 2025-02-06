@@ -21,7 +21,7 @@ export default function Home() {
 
         <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
           Experience real-time conversations like never before. Join thousands
-          of users who trust Bubble for their communication needs.
+          of users who trust BubbleChat for their communication needs.
         </p>
 
         {/* CTA Buttons */}
@@ -80,10 +80,4 @@ export default function Home() {
 export const metadata = {
   title: "Home - Bubble",
   description: "A chat app, to chat with your friends and family.",
-  icons: {
-    icon: "/bubble_chat.png", // Default favicon
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png", // Optional for Apple devices
-  },
-
 };

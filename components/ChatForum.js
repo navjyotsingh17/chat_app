@@ -91,7 +91,7 @@ const ChatForum = ({ clerkUser, slug }) => {
         <Thread />
       </Channel>
     </Chat>
-    <div className="ml-5 mt-5">
+    <div className="mt-5 flex justify-center items-center">
     <BackButton>Back</BackButton>
     </div>
     </>

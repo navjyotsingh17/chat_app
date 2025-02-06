@@ -62,7 +62,7 @@ const createBubble = () => {
 
   return (
     <>
-      <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md md:mt-40 mt-10 relative">
+      <div className="max-w-xl mx-auto p-6 bg-white rounded-lg shadow-md md:mt-40 mt-10 relative">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <Label htmlFor="groupName" className="text-lg">
@@ -71,8 +71,8 @@ const createBubble = () => {
             <Input
               id="groupName"
               value={groupName}
-              onChange={(e) => setGroupName(e.target.value)}
-              placeholder="Enter group name"
+              onChange={(e) => setGroupName(e.target.value.replace(/\s/g, ""))} // Remove spaces dynamically
+              placeholder="Enter group name (spaces are not allowed)"
               required
               className="mt-1"
             />
@@ -136,8 +136,8 @@ const createBubble = () => {
           Clear
         </Button>
       </div>
-      <div className="md:ml-10 md:top-10 ml-5 mt-3 py-2">
-        <BackButton className="absolute bottom-0 left-52 mb-4 ml-4 w-fit" />
+      <div className="md:ml-10 md:top-10 mt-3 py-2 flex justify-center items-center">
+        <BackButton className="absolute bottom-0 mb-4 w-fit" />
       </div>
       <ToastContainer />
     </>

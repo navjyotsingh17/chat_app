@@ -119,11 +119,13 @@ const page = () => {
         <h1 className="font-bold text-center text-4xl my-4 text-indigo-600">
           Bubbles
         </h1>
+        <div className="flex justify-center items-center">
         <Link href={"/createBubble"}>
           <Button className="md:absolute top-5 right-2 m-2 text-white text-lg">
             Create new Bubble
           </Button>
         </Link>
+        </div>
         {errorMessage ? (
           <div className="flex items-center justify-center mt-48">
             <h1 className="text-center text-2xl text-red-600">

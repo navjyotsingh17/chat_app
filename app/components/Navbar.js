@@ -38,6 +38,12 @@ const Navbar = () => {
               <>
                 <div className="hidden md:flex items-center space-x-1">
                   <Link
+                    href="/"
+                    className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
+                  >
+                    Home
+                  </Link>
+                  <Link
                     href="/forums"
                     className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
                   >
@@ -54,7 +60,7 @@ const Navbar = () => {
                     href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
                     className="py-2 px-2 font-medium text-gray-500 rounded-xl md:hover:bg-indigo-600 md:hover:text-white transition duration-300"
                   >
-                    Log In
+                    Sign In
                   </Link>
                   <Link
                     href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
@@ -86,8 +92,14 @@ const Navbar = () => {
       {/* mobile view */}
       <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
         {currentUser.isSignedIn ? (
-          <>
-            <div className="hidden md:flex items-center space-x-1">
+          <div className="flex py-2 px-4 justify-between items-center">
+            <div className="md:flex items-center space-x-1">
+              <Link
+                href="/"
+                className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
+              >
+                Home
+              </Link>
               <Link
                 href="/forums"
                 className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
@@ -97,14 +109,14 @@ const Navbar = () => {
             </div>
 
             <UserButton />
-          </>
+          </div>
         ) : (
           <div className="flex justify-center items-center py-5 gap-4">
             <Link
               href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
               className="py-2 px-2 font-medium text-gray-500 rounded-xl md:hover:bg-indigo-600 md:hover:text-white transition duration-300"
             >
-              Log In
+              Sign In
             </Link>
             <Link
               href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
