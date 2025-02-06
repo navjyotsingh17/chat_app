@@ -19,13 +19,17 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between">
           <div className="flex space-x-7">
-            <div className="">
-              <Link href="/" className="items-center py-4 px-2 flex gap-2">
-                {/* <Image src="/placeholder.svg?height=40&width=40" alt="Logo" width={40} height={40} className="h-8 w-8 mr-2" /> */}
+            <div>
+              <Link href="/" className="flex items-center py-4 px-2 gap-2">
                 <span className="font-bold text-indigo-600 text-4xl">
-                  BubbleChat 
+                  BubbleChat
                 </span>
-                <Image src={"/favicon.ico"} width={50} height={50} alt="bubble_chat_logo"></Image>
+                <Image
+                  src={"/bubble_chat.png"}
+                  width={50}
+                  height={50}
+                  alt="bubble_chat_logo"
+                ></Image>
               </Link>
             </div>
           </div>
@@ -44,13 +48,26 @@ const Navbar = () => {
                 <UserButton />
               </>
             ) : (
-              <></>
+              <>
+                <div className="flex justify-center items-center py-5 gap-4">
+                  <Link
+                    href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
+                    className="py-2 px-2 font-medium text-gray-500 rounded-xl md:hover:bg-indigo-600 md:hover:text-white transition duration-300"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
+                    className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl md:hover:bg-indigo-500 transition duration-300"
+                  >
+                    Sign Up
+                  </Link>
+                </div>
+              </>
             )}
           </div>
-        </div>
-      </div>
-      {currentUser.isSignedIn ? (
-        <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
+
+          {/* menu toggel button */}
           <div className="md:hidden flex items-center">
             <button
               className="outline-none mobile-menu-button"
@@ -63,37 +80,41 @@ const Navbar = () => {
               )}
             </button>
           </div>
-          <ul className="">
-            <li>
+        </div>
+      </div>
+
+      {/* mobile view */}
+      <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
+        {currentUser.isSignedIn ? (
+          <>
+            <div className="hidden md:flex items-center space-x-1">
               <Link
                 href="/forums"
-                className="block text-sm px-2 py-4 md:hover:bg-indigo-500 transition duration-300"
+                className="py-4 px-2 text-gray-500 font-semibold md:hover:text-indigo-600 transition duration-300"
               >
                 Chat
               </Link>
-            </li>
-            {currentUser.isSignedIn ? (
-              <>
-                <div>
-                  <li>
-                    <Link
-                      href="/forums"
-                      className="block text-sm px-2 py-4 md:hover:bg-indigo-500 transition duration-300"
-                    >
-                      Chat
-                    </Link>
-                  </li>
-                </div>
-                <UserButton />
-              </>
-            ) : (
-              <></>
-            )}
-          </ul>
-        </div>
-      ) : (
-        <></>
-      )}
+            </div>
+
+            <UserButton />
+          </>
+        ) : (
+          <div className="flex justify-center items-center py-5 gap-4">
+            <Link
+              href={process.env.NEXT_PUBLIC_CLERK_LOGIN_URL}
+              className="py-2 px-2 font-medium text-gray-500 rounded-xl md:hover:bg-indigo-600 md:hover:text-white transition duration-300"
+            >
+              Log In
+            </Link>
+            <Link
+              href={process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL}
+              className="py-2 px-2 font-medium text-white bg-indigo-600 rounded-xl md:hover:bg-indigo-500 transition duration-300"
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };
